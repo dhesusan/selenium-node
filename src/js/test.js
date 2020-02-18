@@ -16,7 +16,13 @@ const loginTest = async (email, password) => {
         .withCapabilities(capabilities)
         .build();
     try {
-        await driver.get("https://internetorder.dominos.jp/estore/ja/Login");
+        await driver.get("https://www.dominos.jp/");
+        await driver
+            .wait(until.elementLocated(By.className("delivery button")), 5000)
+            .sendKeys(Key.RETURN);
+        await driver
+            .wait(until.elementLocated(By.id("login")), 5000)
+            .sendKeys(Key.RETURN);
         await driver
             .wait(until.elementLocated(By.id("email")), 5000)
             .sendKeys(email);
@@ -35,9 +41,9 @@ const loginTest = async (email, password) => {
 };
 
 //Debug用でコマンドライン引数でメールアドレスとパスワードを渡す
-console.log(process.argv)
-email = process.argv[2]
-password = process.argv[3]
+console.log(process.argv);
+const email = process.argv[2];
+const password = process.argv[3];
 
 loginTest(email, password);
 //export {loginTest};

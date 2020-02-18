@@ -1,4 +1,4 @@
-onst presets = [
+const presets = [
     [
         "@babel/env",
     ],
